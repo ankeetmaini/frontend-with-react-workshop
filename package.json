@@ -1,0 +1,33 @@
+{
+  "name": "frontend-with-react-workshop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js & webpack -w",
+    "clean": "rm -rf build"
+  },
+  "author": "",
+  "license": "MIT",
+  "babel": {
+    "presets": ["env", "react"],
+    "plugins": ["transform-class-properties"]
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.0",
+    "express": "^4.16.3",
+    "html-webpack-plugin": "^2.28.0",
+    "style-loader": "^0.18.2",
+    "webpack": "^2.3.2"
+  },
+  "dependencies": {
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "regenerator-runtime": "^0.11.1"
+  }
+}
