@@ -2,48 +2,53 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "regenerator-runtime/runtime";
 
+import { Async } from "react-select";
+import "react-select/dist/react-select.css";
+
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      locations: []
+      selectedLocation: null
     };
     this.fetchLocations = this.fetchLocations.bind(this);
   }
   componentDidMount() {}
 
-  async fetchLocations(event) {
-    const val = event.target.value;
-
-    const locations = await fetch(
+  fetchLocations(val) {
+    return fetch(
       `https://developers.zomato.com/api/v2.1/locations?query=${val}`,
       {
         headers: {
-          "user-key": "a891e3e4af4044d83dbb53e26c28f876"
+          "user-key": "0527e31f81833a59ced3c84e92d0e513"
         }
       }
-    ).then(r => r.json());
-    this.setState({
-      locations: locations.location_suggestions
-    });
+    )
+      .then(r => r.json())
+      .then(json => {
+        return {
+          options: json.location_suggestions.map(item => ({
+            label: item.title,
+            value: item.city_id
+          }))
+        };
+      });
   }
 
   render() {
     return (
       <div>
         <h1>Lomato!</h1>
-        <input
-          type="text"
-          placeholder="enter location"
-          onChange={this.fetchLocations}
-        />
         <div />
-        list of locations
-        {this.state.locations.map(l => (
-          <div>
-            {l.city_name}, {l.country_name}
-          </div>
-        ))}
+        <Async
+          name="form-field-name"
+          value="one"
+          loadOptions={this.fetchLocations}
+          filterOptions={(options, filter, currentValues) => {
+            // Do no filtering, just return all options
+            return options;
+          }}
+        />
       </div>
     );
   }

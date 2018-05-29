@@ -10,8 +10,13 @@
   "author": "",
   "license": "MIT",
   "babel": {
-    "presets": ["env", "react"],
-    "plugins": ["transform-class-properties"]
+    "presets": [
+      "env",
+      "react"
+    ],
+    "plugins": [
+      "transform-class-properties"
+    ]
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -28,6 +33,7 @@
   "dependencies": {
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
+    "react-select": "^1.2.1",
     "regenerator-runtime": "^0.11.1"
   }
 }
